@@ -1,0 +1,205 @@
+/* ===============================
+   THEME VARIABLES
+=============================== */
+:root {
+  --primary: #4f8cff;
+  --primary-glow: rgba(79, 140, 255, 0.45);
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --card-hover-bg: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text-light: #ced4f4;
+  --sidebar-width: 260px;
+  --transition: 0.35s ease;
+}
+
+/* ===============================
+   GLOBAL
+=============================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background: radial-gradient(circle at 20% 20%, #14162f, #0b0d24, #050516);
+  overflow-x: hidden;
+}
+
+.particles {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-image: url("https://i.imgur.com/euVhU9L.png");
+  background-size: cover;
+  opacity: 0.14;
+  animation: floatParticles 28s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatParticles {
+  from { transform: scale(1) translateY(0); }
+  to { transform: scale(1.25) translateY(-180px); }
+}
+
+/* ===============================
+   HAMBURGER
+=============================== */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  font-size: 30px;
+  cursor: pointer;
+  color: var(--primary);
+  z-index: 999;
+}
+
+@media (max-width: 700px) {
+  .hamburger { display: block; }
+}
+
+/* ===============================
+   SIDEBAR
+=============================== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.23);
+  backdrop-filter: blur(14px);
+  border-right: 1px solid var(--glass-border);
+  padding: 30px 20px;
+  box-shadow: 6px 0px 18px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar .logo {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #8bb3ff, #4f8cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-item {
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 16px;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: var(--primary-glow);
+  transform: translateX(10px);
+  box-shadow: 0px 0px 12px var(--primary);
+}
+
+.logout {
+  margin-top: 100px;
+  background: rgba(255, 55, 55, 0.45);
+  text-align: center;
+}
+
+.logout:hover {
+  background: rgba(255, 55, 55, 0.7);
+}
+
+/* ===============================
+   MAIN CONTENT
+=============================== */
+.main {
+  margin-left: var(--sidebar-width);
+  padding: 40px;
+  height: 100vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 700px) {
+  .sidebar { transform: translateX(-100%); }
+  .main { margin-left: 0; padding: 20px; }
+}
+
+/* USER BADGE */
+.user-badge {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.user-badge img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+  box-shadow: 0px 0px 8px var(--primary);
+}
+
+/* TYPING TITLE */
+.typing-title {
+  font-size: 30px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #fff;
+  width: 100%;
+}
+
+/* DASHBOARD GRID & CARDS */
+.dashboard-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.card:hover {
+  background: var(--card-hover-bg);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0px 8px 28px var(--primary-glow);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+/* PAGES */
+.page { display: none; }
+.page:first-child { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .sidebar { width: 200px; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
